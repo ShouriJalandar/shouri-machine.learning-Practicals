@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shouri Prashant Jalandar | Portfolio</title>
+    <style>
+        :root {
+            --primary-blue: #003366;
+            --accent-blue: #3498db;
+            --sidebar-bg: #111;
+            --text-dark: #333;
+            --light-grey: #f4f7f6;
+            --highlight-pink: #f5a3d7;
+            --highlight-yellow: #fcd581;
+            --arith-purple: #9b59b6;
+        }
+
+        /* Base Styles */
+        * { box-sizing: border-box; transition: all 0.3s ease; }
+        html { scroll-behavior: smooth; }
+        body { 
+            font-family: 'Segoe UI', sans-serif; 
+            margin: 0; 
+            overflow-x: hidden; 
+            background: #fff; 
+            color: var(--text-dark); 
+        }
+
+        /* Ticker Bar */
+        .ticker-wrap { width: 100%; overflow: hidden; background: var(--accent-blue); color: white; padding: 12px 0; font-weight: 600; font-size: 14px; }
+        .ticker { display: inline-block; white-space: nowrap; animation: ticker 30s linear infinite; }
+        .ticker__item { display: inline-block; padding: 0 60px; }
+        @keyframes ticker { 0% { transform: translate3d(0, 0, 0); } 100% { transform: translate3d(-100%, 0, 0); } }
+
+        /* Navigation */
+        nav { 
+            background: white; padding: 20px 5%; display: flex; align-items: center; 
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000; 
+        }
+        .logo { flex: 1; font-size: 18px; font-weight: 800; color: var(--primary-blue); letter-spacing: 1px; cursor: pointer; }
+        .nav-links { flex: 2; display: flex; justify-content: center; gap: 35px; }
+        .nav-links a { text-decoration: none; color: var(--text-dark); font-weight: 800; font-size: 13px; text-transform: uppercase; }
+        .nav-links a:hover { color: var(--accent-blue); }
+        .nav-right-icons { flex: 1; display: flex; justify-content: flex-end; align-items: center; gap: 25px; }
+        
+        .touch-btn {
+            background-color: var(--primary-blue); color: white; text-decoration: none; padding: 10px 22px;
+            border-radius: 4px; font-size: 12px; font-weight: 700; text-transform: uppercase; border: 2px solid var(--primary-blue);
+        }
+        .touch-btn:hover { background-color: transparent; color: var(--primary-blue); }
+
+        .menu-icon { cursor: pointer; display: flex; flex-direction: column; gap: 5px; }
+        .menu-icon div { width: 25px; height: 3px; background: var(--primary-blue); border-radius: 2px; }
+
+        /* Sidebar */
+        .sidebar { height: 100%; width: 0; position: fixed; z-index: 2000; top: 0; right: 0; background-color: var(--sidebar-bg); overflow-x: hidden; transition: 0.5s; padding-top: 80px; color: white; }
+        .sidebar-content { padding: 0 40px; text-align: center; }
+        .side-img { width: 100%; border-radius: 12px; margin: 20px 0; border: 2px solid var(--accent-blue); }
+        .closebtn { position: absolute; top: 20px; left: 25px; font-size: 40px; color: white; text-decoration: none; }
+
+        /* Hero Section */
+        .hero { 
+            height: 90vh; display: flex; flex-direction: column; justify-content: center; 
+            align-items: center; text-align: center; padding: 0 10%; background: #ffffff; color: #1a1a1a;
+        }
+        .hero-subtext { font-size: clamp(16px, 2.5vw, 24px); color: #777; margin-bottom: 25px; font-weight: 400; letter-spacing: 0.5px; }
+        .hero-main-title { font-size: clamp(35px, 7vw, 95px); font-weight: 850; line-height: 1.15; margin: 0; color: #000; }
+        .highlight-pink { background-color: var(--highlight-pink); padding: 0 10px; display: inline-block; }
+        .highlight-yellow { background-color: var(--highlight-yellow); padding: 0 10px; display: inline-block; }
+        .quote { font-style: italic; color: var(--accent-blue); font-size: 1.2rem; margin-top: 40px; max-width: 650px; border-left: 3px solid var(--accent-blue); padding: 10px 25px; background: #f9f9f9; }
+
+        /* Skills Pill Section */
+        .skills-section { background: #fdfdfd; padding: 60px 10%; border-bottom: 1px solid #eee; }
+        .skills-container { max-width: 1000px; margin: 0 auto; text-align: center; }
+        .skills-title { font-size: 14px; text-transform: uppercase; letter-spacing: 2px; color: var(--accent-blue); margin-bottom: 40px; font-weight: 700; }
+        .skills-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; }
+        .skill-pill { 
+            background: #ffffff; color: #333; padding: 12px 24px; border-radius: 50px; font-size: 15px; font-weight: 600; 
+            display: flex; align-items: center; gap: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); border: 1px solid #eee; transition: 0.3s;
+        }
+        .skill-pill:hover { transform: translateY(-5px); border-color: var(--accent-blue); box-shadow: 0 8px 20px rgba(0,51,102,0.1); }
+
+        /* Video Styling */
+        .video-wrapper { 
+            position: relative; border-radius: 20px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.15); background: #000; cursor: pointer;
+        }
+        .video-play-btn {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; font-size: 60px; pointer-events: none; opacity: 0.8; transition: 0.3s;
+        }
+
+        /* General Containers */
+        .container { padding: 100px 10%; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 40px; }
+        .card { background: var(--light-grey); padding: 35px; border-radius: 15px; text-align: left; border: 1px solid #eee; cursor: pointer; }
+        .card:hover { transform: translateY(-10px); background: white; box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
+
+        footer { background: var(--primary-blue); color: white; padding: 60px 10%; text-align: center; }
+    </style>
+</head>
+<body>
+
+    <div class="ticker-wrap">
+        <div class="ticker">
+            <div class="ticker__item">SHOURI PRASHANT JALANDAR</div>
+            <div class="ticker__item">CSE STUDENT AT S.B. JAIN, NAGPUR</div>
+            <div class="ticker__item">PYTHON | SQL | IoT | JAVA</div>
+            <div class="ticker__item">INTERNSHIP READY 2026</div>
+        </div>
+    </div>
+
+    <nav>
+        <div class="logo" onclick="window.scrollTo(0,0)">SHOURI PRASHANT JALANDAR.</div>
+        <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#why-me">Why Arithwise</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+        </div>
+        <div class="nav-right-icons">
+            <a href="#contact" class="touch-btn">Get in Touch</a>
+            <div class="menu-icon" onclick="toggleSidebar()">
+                <div></div><div></div><div></div>
+            </div>
+        </div>
+    </nav>
+
+    <div id="mySidebar" class="sidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="toggleSidebar()">&times;</a>
+        <div class="sidebar-content">
+            <h3 style="color: var(--accent-blue);">Personal Profile</h3>
+            <img src="/static/uploads/profile.jpg" alt="Profile" class="side-img">
+            <hr style="border: 0.1px solid #333; margin: 30px 0;">
+            <h3 style="color: var(--accent-blue);">Resume Snapshot</h3>
+            <img src="/static/uploads/resume_image.jpg" alt="Resume" class="side-img">
+        </div>
+    </div>
+
+    <section class="hero">
+        <p class="hero-subtext">Arithwise builds tech that grows business. I build the data insights that fuel that growth.</p>
+        <h1 class="hero-main-title">
+            Your <span class="highlight-pink">vision</span> is <span class="highlight-pink">my</span><br>
+            <span class="highlight-yellow">roadmap</span>
+        </h1>
+        <div class="quote">
+            "Success is where technical logic meets the art of human connection."
+        </div>
+    </section>
+
+    <section class="skills-section">
+        <div class="skills-container">
+            <h2 class="skills-title">Technical Expertise & Competencies</h2>
+            <div class="skills-grid">
+                <div class="skill-pill"><span>🐍</span> Python</div>
+                <div class="skill-pill"><span>🗄️</span> SQL & SQLite</div>
+                <div class="skill-pill"><span>📊</span> Data Analysis</div>
+                <div class="skill-pill"><span>🌐</span> HTML5 & CSS3</div>
+                <div class="skill-pill"><span>⚡</span> Flask / Web Dev</div>
+                <div class="skill-pill"><span>🎤</span> Public Speaking</div>
+                <div class="skill-pill"><span>🤝</span> Strategic Teamwork</div>
+                <div class="skill-pill"><span>💡</span> IoT (Raspberry Pi)</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="why-me" class="container" style="background: #fff;">
+        <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 50px;">
+            <div style="flex: 1; min-width: 300px;">
+                <div class="video-wrapper" onclick="toggleVideo()">
+                    <video id="portfolioVideo" loop muted playsinline style="width: 100%; display: block; opacity: 0.85;">
+                        <source src="/static/uploads/your-video.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div id="playOverlay" class="video-play-btn">▶</div>
+                </div>
+                <p style="text-align: center; color: #888; font-size: 13px; margin-top: 10px;">Click to Play/Pause Project Demo</p>
+            </div>
+            <div style="flex: 1.2; min-width: 300px;">
+                <h5 style="color: var(--arith-purple); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 10px; font-weight: 700;">Why Arithwise Needs Me</h5>
+                <h2 style="font-size: 36px; line-height: 1.2; color: #222; margin-bottom: 20px; font-weight: 850;">
+                    The Actionable <span style="background: var(--highlight-pink); padding: 0 8px;">Insight</span><br>your Business deserves!
+                </h2>
+                <ul style="list-style: none; padding: 0; margin-bottom: 35px;">
+                    <li style="margin-bottom: 15px; display: flex; align-items: flex-start; gap: 12px; font-size: 17px;">
+                        <span style="color: var(--arith-purple); font-weight: 900;">✓</span> Translating complex data into optimum growth strategies.
+                    </li>
+                    <li style="margin-bottom: 15px; display: flex; align-items: flex-start; gap: 12px; font-size: 17px;">
+                        <span style="color: var(--arith-purple); font-weight: 900;">✓</span> Adopting best Technology & Methodology for strategic advantage.
+                    </li>
+                    <li style="margin-bottom: 15px; display: flex; align-items: flex-start; gap: 12px; font-size: 17px;">
+                        <span style="color: var(--arith-purple); font-weight: 900;">✓</span> Harnessing human ingenuity & collaboration for world-class service.
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="container" style="background: #fff;">
+        <h2 style="text-align: center; color: var(--primary-blue); font-size: 34px; margin-bottom: 10px;">Core Technical Projects</h2>
+        <p style="text-align: center; color: #666; margin-bottom: 40px;">Practical applications of software logic and hardware integration.</p>
+        <div class="grid">
+            <div class="card">
+                <div style="font-size: 45px; margin-bottom: 15px;">📟</div>
+                <h3>IoT & SaaS Safety System</h3>
+                <p style="color: #666; font-size: 15px; line-height: 1.6;">
+                    A <strong>Java-based SaaS backend</strong> monitoring Raspberry Pi sensors. Uses <strong>Priority Queues</strong> to ensure emergency alerts (gas/smoke) are processed with zero latency.
+                </p>
+            </div>
+            <div class="card">
+                <div style="font-size: 45px; margin-bottom: 15px;">🐍</div>
+                <h3>Dynamic SQL Portfolio</h3>
+                <p style="color: #666; font-size: 15px; line-height: 1.6;">
+                    Developed a <strong>Flask/Python</strong> application that uses <strong>SQL</strong> to manage content dynamically. Automated site updates, moving from static hard-coding to scalable data management.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="container" id="about" style="background: var(--light-grey);">
+        <div style="display: flex; flex-wrap: wrap; gap: 50px; align-items: center;">
+            <div style="flex: 1; min-width: 300px; background: #001e3c; padding: 45px; border-radius: 15px; box-shadow: 20px 20px 0 var(--accent-blue); color: #3498db; font-family: monospace;">
+                def analyze_data(input):<br>
+                &nbsp;&nbsp;import sqlite3 as sql<br>
+                &nbsp;&nbsp;# Extracting Insights...<br>
+                &nbsp;&nbsp;return impactful_results
+                <div style="margin-top: 40px; color: white; text-align: center;">
+                    <span style="font-size: 45px;">🗣️</span><br>
+                    <small style="letter-spacing: 3px; font-weight: bold;">ADVANCED COMMUNICATOR</small>
+                </div>
+            </div>
+            <div style="flex: 1.5; min-width: 300px;">
+                <h2 style="color: var(--primary-blue); font-size: 36px; margin-bottom: 25px;">Bridging Data and People</h2>
+                <p style="font-size: 19px; line-height: 1.8; color: #444;">
+                    As a 6th-semester CSE student at <strong>S.B. Jain Institute, Nagpur</strong>, I combine a functional grasp of <strong>Python and SQL</strong> with advanced communication skills. I focus on transforming data into <strong>actionable insights</strong>.
+                </p>
+                <p style="font-size: 19px; line-height: 1.8; color: #444;">
+                    My goal is to support your mission of excellence in analysis as a reliable team member who can clearly articulate technical results to drive impactful outcomes.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <h2 style="font-size: 28px;">Let's Build Something Impactful</h2>
+        <p>S.B. Jain Institute of Technology, Management & Research, Nagpur</p>
+        <div style="margin: 35px 0;">
+            <a href="mailto:your-email@gmail.com" style="color: var(--accent-blue); text-decoration: none; font-weight: bold; margin: 0 20px; font-size: 18px;">Email Me</a>
+            <a href="#" style="color: var(--accent-blue); text-decoration: none; font-weight: bold; margin: 0 20px; font-size: 18px;">LinkedIn</a>
+        </div>
+        <p style="opacity: 0.5; font-size: 12px; margin-top: 50px;">© 2026 Shouri Prashant Jalandar.</p>
+    </footer>
+
+    <script>
+        function toggleSidebar() {
+            var sidebar = document.getElementById("mySidebar");
+            sidebar.style.width = (sidebar.style.width === "380px") ? "0" : "380px";
+        }
+
+        function toggleVideo() {
+            const video = document.getElementById('portfolioVideo');
+            const overlay = document.getElementById('playOverlay');
+            if (video.paused) {
+                video.play();
+                overlay.style.opacity = "0";
+            } else {
+                video.pause();
+                overlay.style.opacity = "0.8";
+            }
+        }
+    </script>
+</body>
+</html>
